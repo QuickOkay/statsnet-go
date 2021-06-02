@@ -1,0 +1,28 @@
+.footer {
+  padding: 20px 0;
+  font-size: 15px;
+
+  .menu {
+    margin-bottom: 10px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+
+    .menu-item {
+      color: #0160A0;
+      text-decoration: none;
+      border-bottom: 1px solid #acd;
+      margin-right: 1.5em;
+
+      &:hover {
+        color: #86b0ce;
+      }
+    }
+  }
+
+  .credits {
+    a {
+      color: #888;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}

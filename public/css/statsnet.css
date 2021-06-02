@@ -1,0 +1,19 @@
+html {
+    scroll-behavior: smooth;
+}
+.company-characteristics__value {
+     word-spacing: normal!important;
+ }
+.upd-message {
+    font-size: 12px;
+    color: gray;
+}
+.loader {
+    height: 18px!important;
+    width: 18px!important;
+    margin-right: 6px!important;
+    border-left-color: #6f7994!important;
+    border-top-color: #6f7994!important;
+    border-bottom-color: #6f7994!important;
+    border-right-color: transparent!important;
+}

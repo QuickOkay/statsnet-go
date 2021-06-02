@@ -1,0 +1,162 @@
+<style>
+    html{
+        height: 100%;
+    }
+    body{
+        background: #f9fafc;
+        display:flex;
+        flex-direction:column;
+        height: 100%;
+    }
+
+    .footer{
+        margin-top:auto;
+    }
+    .header{
+        margin-bottom:auto;
+    }
+    #search-snippets{
+
+        width: 200%;
+        max-width:625px;
+        height: auto;
+        max-height: 300px;
+        background: #fff;
+        position: absolute;
+        top: 65px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 20px 18px -10px;
+        font-size:1rem;
+        z-index:999;
+    }
+    @media screen and (max-width:650px){
+        #search-snippets{width:92.5%;}
+    }
+    #search-snippets li{
+        padding:10px 15px;
+        cursor:pointer;
+    }
+    #search-snippets li a{
+        display:block;
+        width:100%;
+        height:100%;
+    }
+    #search-snippets li:hover{
+        background: #ececec;
+
+    }
+    #search-snippets .selected{
+        /*background: #007bff3b;*/
+        background: none!important;
+        border-radius: 0!important;
+        font-weight: bold;
+    }
+    #search-snippets .selected::after{
+        display:none;
+    }
+</style>
+<script>
+
+    document.getElementById('header-search').style.display = 'none'
+</script>
+<section class="home-page">
+
+    <div class="container">
+
+        <div class="offer">
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Поиск и проверка контрагентов</h1>
+                    <p>Statsnet – это сервис, разработанный для тех, кто хочет работать только с надёжными контрагентами.
+                        Проявите
+                        должную осмотрительность и проверяйте своих контрагентов по 37 факторам риска</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mb-5">
+                    <form class="search-country-box" onsubmit="event.preventDefault(); search('query')" id="main-search">
+                        <div class="row">
+                            <div class="col-lg-6 pr-lg-0 pr-md-0 relative">
+                                <div class="search-box" style="padding-left: 15px;">
+                                    <div class="search-field">
+
+                                        <input autofocus type="text" name="query" placeholder="Наименование, БИН/ИИН, ФИО руководителя" id="query" autocomplete="off">
+
+                                        <button type="submit" id="submit" style="display: none">
+                                            <span class="fas fa-search"></span>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3 pl-lg-0 pr-md-0">
+
+                                <select class="browser-default custom-select custom-select-lg select-search" id="countrySearch">
+                                    <option selected value="kz">Казахстан</option>
+                                    <option value="uz">Узбекистан</option>
+                                    <option value="kg">Кыргызстан</option>
+                                    <option value="global">Глобальный</option>
+                                </select>
+
+                            </div>
+                            <div class="col-lg-3 pl-lg-0 pr-md-0">
+                                <button type="submit" class="btn search-box" style="padding-left: 15px;background-color: #057ddf;color:#fff;">Найти</button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul id="search-snippets">
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-8">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="advantages--item">
+                                <img src="/img/tools-dashboard.svg" alt="Tools dashboard">
+                                <h3>Оценка рисков</h3>
+                                <p>Уникальные аналитические показатели, позволяющие провести экспресс-анализ компании и оценить ее
+                                    благонадежность</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="advantages--item">
+                                <img src="/img/inbox-down.svg" alt="Inbox down">
+                                <h3>Отчеты и выписки</h3>
+                                <p>Предоставляем отчеты и выписки из государственных реестров, судов, правоохранительных органов,
+                                    кредитных бюро.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="advantages--item">
+                                <img src="/img/user-check.svg" alt="User check">
+                                <h3>Проверка руководства</h3>
+                                <p>Список совладельцев, иерархия владения и структура собственников, включая иностранных бенефициаров
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>

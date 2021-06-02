@@ -1,0 +1,126 @@
+.header {
+  background: #fff;
+  position: static;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  display: flex;
+  align-items: center;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  a {
+    color: #0160A0;
+    text-decoration: none;
+    border-bottom: 1px solid #acd;
+
+    &:hover {
+      color: #86b0ce;
+      border-bottom: 1px solid #d5e5ed;
+    }
+  }
+
+  .logo {
+    margin-right: 35px;
+
+    a {
+      color: #000;
+      font-family: 'Avenir', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      border-bottom: none;
+
+      &:hover {
+        color: #000;
+        border-bottom: none;
+      }
+    }
+  }
+
+  nav {
+    padding: 5px 0;
+    margin-left: auto;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    ul {
+      display: flex;
+
+      li {
+        margin-left: 25px;
+      }
+    }
+  }
+
+  .search-box {
+    padding: 0;
+    margin: 0;
+    height: 32px;
+    max-width: 300px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .08);
+
+    @media (max-width: 768px) {
+      margin: 5px 0 7px;
+    }
+
+    .search-field {
+      input {
+        font-family: inherit;
+        font-size: inherit;
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, .15);
+        padding: 0 4px 0 8px;
+        border-radius: 3px;
+        -webkit-appearance: none;
+      }
+    }
+
+    button[type="submit"] {
+      display: none;
+    }
+  }
+  &.header-home {
+
+  }
+
+  &.header-company {
+    @media (max-width: 992px) {
+      padding-top: 5px;
+      padding-bottom: 7px;
+      height: auto;
+      max-height: 150px;
+
+      nav {
+        margin-left: 0;
+
+        li:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 5px;
+    padding-bottom: 7px;
+    height: auto;
+    max-height: 150px;
+
+    nav {
+      margin-left: 0;
+
+      li:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,200 @@
+
+<script async>
+
+  function updateClipboard(newClip) {
+    navigator.clipboard.writeText(newClip).then(function() {
+      /* clipboard successfully set */
+      console.log("Copied: ", newClip)
+    }, function(err) {
+      /* clipboard write failed */
+      console.log('Something get wrong', err)
+    });
+  }
+
+  const isAdmin = {{ $.user.Role }} === 99;
+  const balance = {{ $.user.Balance }};
+  const copyToClipboard = (e) => {
+    const text = document.getElementById('API_KEY').value;
+    const tooltip = document.getElementById("api-tooltip")
+    updateClipboard(text);
+    tooltip.innerHTML = "Скопировано в буфер обмена";
+    setTimeout(()=>{
+      tooltip.innerHTML = "Скопировать";
+    },3000)
+  }
+</script>
+<style>
+  :root{--input-padding-x:0.75rem;--input-padding-y:0.75rem}body,html{width:100%;font-family:Arial!important;background-color:#f0f3f6;display:flex;flex-direction:column}*{font-family:Arial,sans-serif}.form-label-group{position:relative;margin:.7rem 0;cursor:pointer}.form-label-group>input,.form-label-group>label{padding:var(--input-padding-y) var(--input-padding-x)}.custom-input{height:auto;cursor:pointer;max-width:300px}.form-label-group>label{position:absolute;top:0;left:0;display:block;width:100%;margin-bottom:0;line-height:1.5;color:#495057;border:1px solid transparent;border-radius:.25rem;transition:all .1s ease-in-out;cursor:pointer}.form-label-group input::-webkit-input-placeholder{color:transparent}.form-label-group input:-ms-input-placeholder{color:transparent}.form-label-group input::-ms-input-placeholder{color:transparent}.form-label-group input::-moz-placeholder{color:transparent}.form-label-group input::placeholder{color:transparent}.form-label-group input:not(:placeholder-shown){padding-top:calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));padding-bottom:calc(var(--input-padding-y)/ 3)}.form-label-group input:not(:placeholder-shown)~label{padding-top:calc(var(--input-padding-y)/ 3);padding-bottom:calc(var(--input-padding-y)/ 3);font-size:12px;color:#777}#update_balance,border:1px solid transparent;border-radius:6px;color:#f0f8ff;font-weight:700;font-size:16px;font-family:Arial,sans-serif;outline:0!important}.me-page{flex:1 auto}.header{margin-bottom:auto}.footer{background:#f0f3f6;margin-top:auto}.buy-block{font-family:sans-serif}.subscribe-card{margin:0 0 10px 0;border-radius:6px;min-width:280px;background:#fff;box-shadow:0 2.76726px 2.21381px rgba(0,0,0,.07),0 6.6501px 5.32008px rgba(0,0,0,.04317),0 12.5216px 10.0172px rgba(0,0,0,.0339075),0 22.3363px 17.869px rgba(0,0,0,.0282784),0 41.7776px 33.4221px rgba(0,0,0,.0235573),0 100px 80px rgba(0,0,0,.0174624)!important}.card--title{color:#24292e}.sub--title{color:#6a737d}button:hover{filter:grayscale(.1)}button:active{filter:grayscale(.05)}@media screen and (min-width:900px){.subscribe-card{min-width:360px}}@media screen and (max-width:767px){.subscribe-card{min-width:100%}}
+#api_token{
+    width: 100%;
+    max-width:450px;
+    height: 3rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #f0f8ff;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    outline: none !important;
+}  .subscribe-card > button, #update_balance {
+       width: 90%;
+       height: 3rem;
+         border-radius: 6px;
+       font-weight: bold;
+       font-size: 16px;
+       outline: none !important;
+   }
+
+  .old-price{
+      color: #6a737d;
+      font-size: 1.2rem;
+      line-height: 1.2rem;
+  }
+  .custom-tooltip {
+      position: relative;
+      display: inline-block;
+  }
+
+  .custom-tooltip .tooltiptext {
+      visibility: hidden;
+      width: 140px;
+      background-color: #555555b3;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 120%;
+      left: 100%;
+      margin-left: -75px;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+  }
+
+  .custom-tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555555b3 transparent transparent transparent;
+  }
+
+  .custom-tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+  }
+  .copyfrom {
+      position: absolute;
+      left: -9999px;
+  }
+  @media screen and (max-width:768px) {
+
+      body{
+          height:auto!important;
+      }
+  }
+  .beta-banner{
+      overflow: unset!important;
+  }
+</style>
+
+
+<div class="custom-modal hide" id="choose-payment-type-modal">
+    <div class="modal-overlay"></div>
+    <div class="wrapper" style="max-width:350px; max-height:400px">
+        <div class="close-custom" >×</div>
+        <div class="d-flex flex-column align-items-center justify-content-between" style="height:100%;">
+            <h1 class="h4" style="margin-bottom:1rem; align-self:flex-start">Выберите способ оплаты</h1>
+            <div style="width:100%;">
+                <button class="btn btn-blue" id="yandex">Yandex</button>
+                <div id="paypal-button-container" style="margin-top:11px; width:100%; max-height: 150px; transition:all 0.5s;"></div>
+            </div>
+            <div id="loader" style="display:none; position: absolute; top:50%;">
+                <div class="spinner-border loader" style="height:34px!important; width:34px!important;"></div>
+            </div>
+            <div id="error-message-modal" class="text-danger" ></div>
+        </div>
+    </div>
+</div>
+<div class="h-100 py-5 container d-flex flex-column me-page" style="flex: 1 auto;">
+  <div class="d-flex flex-column user-info">
+    <div class="d-flex justify-content-between">
+      <div>
+          <h4><span class="sub--title">{{ .user.Email }}</span></h4>
+          <div class="">
+            <a href="/me/history">История купленных отчётов</a>
+          </div>
+
+          <div class="">
+            Подписка: {{ if gt .user.Plan.ID 0 }} активна {{ .user.Plan.Title }} {{ else }} Не активна {{ end }}
+          </div>
+
+          <div class="">Баланс: {{ .user.Balance }}  &#8376;</div>
+
+          <div class="">
+            <form
+              target="_blank"
+              action="https://money.yandex.ru/quickpay/confirm.xml"
+              method="post"
+              id="balance_form"
+            >
+              <input type="hidden" name="receiver" value="410013422258492" />
+              <input
+                type="hidden"
+                name="formcomment"
+                value="Пополнение баланса"
+              />
+              <input
+                type="hidden"
+                name="short-dest"
+                value="Пополнение баланса"
+              />
+              <input type="hidden" name="label" id="balance_value" value="" />
+              <input type="hidden" name="quickpay-form" value="shop" />
+              <input
+                type="hidden"
+                name="targets"
+                value="Пополнение баланса"
+              />
+              <input type="hidden" name="comment" value="" />
+              <input type="hidden" name="need-fio" value="false" />
+              <input
+                type="hidden"
+                name="successURL"
+                value="https://go.statsnet.co/me?showModal=true"
+              />
+              <input type="hidden" name="need-email" value="false" />
+              <input type="hidden" name="need-phone" value="false" />
+              <input type="hidden" name="need-address" value="false" />
+              <input type="hidden" name="paymentType" value="PC" />
+              <input type="hidden" data-type="number" name="sum" value=""/>
+
+              <div class="d-flex flex-column form-label-group">
+                <input class="custom-input form-control" type="text" required value="" id="sum" placeholder="Сумма" />
+                <label for="sum">Сумма</label>
+              </div>
+              <button id="update_balance" class="btn btn-primary" type="submit" style="max-width:300px">Пополнить баланс</button>
+              <span id="balance-error-message" class="text-danger" style="display: none">
+              </span>
+
+            </form>
+          </div>
+          <span id="error-message" class="text-danger" style="display: none">
+          </span>
+      </div>
+      <div style="align-self:flex-end" class="custom-tooltip">
+          <input class='copyfrom' id="API_KEY" tabindex='-1' value="{{ .user.ApiKey }}" aria-hidden='true'>
+          <span class="tooltiptext" id="api-tooltip">Скопировать</span>
+        <button id="api_token" class="btn btn-primary"  onclick="copyToClipboard(this)" type="submit" style="max-width:300px">Получить API ключ</button>
+      </div>
+
+    </div>
+    {{ template "Tarrifs" $ }}
+  </div>
+
+</div>

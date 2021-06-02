@@ -1,0 +1,280 @@
+.items-layout {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.item-card p {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin: 0;
+	padding: 0;
+	line-height: 24px;
+	font-size: 24px;
+	align-items: center;
+}
+
+.additional-val {
+	opacity: 0.6;
+	font-size: 16px;
+}
+
+.item-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-self: center;
+	background-color: #fff;
+	height: 200px;
+	width: 23%;
+	margin: 1%;
+	box-shadow: 0 1px 15px rgba(27, 31, 35, 0.15);
+	border-color: #eaecef;
+	border-radius: 6px;
+	border: 1px solid #e1e4e8;
+	padding-top: 16px;
+	padding-bottom: 8px;
+	font-family: "Gotham Pro";
+}
+
+@media (max-width: 575px) {
+	.item-card {
+		width: 280px;
+		margin: 10px auto;
+	}
+}
+
+@media (min-width: 576px) {
+	.item-card {
+		width: 280px;
+		margin: 10px auto;
+	}
+}
+
+@media (min-width: 768px) {
+	.item-card {
+		width: 280px;
+		margin: 4% 1.6%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.item-card {
+		width: 23%;
+		margin: 1%;
+	}
+}
+
+.text-header {
+	font-size: 24px;
+	font-family: "Gotham Pro";
+}
+
+.text-bold {
+	font-weight: 600 !important;
+}
+
+.btn-mktg {
+	display: inline-block;
+	padding: 16px 24px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #fff !important;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: #1074e7;
+	border: 1px solid #1074e7;
+	border-radius: 3px;
+	transition: all 0.3s ease;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.btn-mktg:focus {
+	outline: 0;
+	box-shadow: 0 0 0 0.2em rgba(3, 102, 214, 0.3);
+}
+
+.btn-mktg:hover {
+	text-decoration: none;
+	background-color: #0366d6;
+	border-color: #0366d6;
+}
+
+a:active,
+a:hover {
+	outline-width: 0;
+}
+
+a:hover {
+	/*text-decoration: underline;*/
+}
+
+.grid-layout {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.grid-item {
+	position: relative;
+	display: flex;
+	padding-left: 0;
+	flex: 1 1 auto;
+	min-width: 95px;
+	height: 62.5px;
+	align-items: center;
+	margin: auto 0;
+	justify-content: flex-end;
+	/* background-color: #c1cdff; */
+	margin-right: 2px;
+}
+
+.grid-item > button {
+	width: 100%;
+	height: 100%;
+	border: none;
+	height: 60px !important;
+	padding: 0 !important;
+}
+
+.grid-item .money-value {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.grid-item:first-child {
+	font-family: "Gotham Pro";
+	font-size: 16px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 62.5px;
+	padding: 0 16px;
+	box-sizing: border-box;
+	margin-right: 2px;
+	flex: 0 0 157px;
+	background-color: transparent;
+}
+
+@media (max-width: 995px) {
+	.grid-layout {
+		flex-direction: column;
+	}
+	.grid-item:first-child {
+		justify-content: center;
+		font-size: 24px;
+	}
+	.grid-item {
+		justify-content: flex-start;
+		margin: 0;
+		width: 300px;
+		text-align: center;
+	}
+}
+
+.switcher {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 300px;
+	font-family: "Gotham Pro";
+}
+
+@media (max-width: 768px) {
+	.switcher {
+		margin: 0 auto;
+		padding: 0 !important;
+		justify-content: center;
+	}
+}
+
+.switcher-btn {
+	display: flex;
+	cursor: pointer;
+	width: 50%;
+	min-height: 40px;
+	height: auto;
+	text-align: center;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	align-items: center;
+	justify-content: center;
+	color: #0f2b46;
+	background-color: #fff;
+	border: 1.4px solid #0f2b46;
+	transition: background 0.2s ease, box-shadow 0.2s ease-in-out,
+		color 0.2s ease;
+}
+
+.switcher-btn:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.switcher-btn:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.switcher-active {
+	color: #fff;
+	background-color: #0f2b46 !important;
+}
+
+.switcher-btn:hover {
+	background-color: #006494;
+	color: #ffffff;
+}
+
+.lds-ring {
+	display: inline-block;
+	position: relative;
+	width: 20px;
+	height: 20px;
+}
+
+.lds-ring div {
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	margin: 2px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+	border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+	animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+	animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+	animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.logo a {
+	text-decoration: none;
+}

@@ -1,0 +1,9 @@
+/* TEAM */
+
+/* THANKS */
+
+/* SITE */
+	Last update: 2021/01/12
+	Language: Russian
+	Standards: HTML5, CSS3
+	Softwares: Atom, SublimeText, VSCode

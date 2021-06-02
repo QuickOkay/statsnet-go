@@ -1,0 +1,319 @@
+
+<style>
+    .entry-header {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .entry-container {
+        min-height: 360px;
+    }
+    .hidden{
+        display:none!important;
+    }
+    .visible{
+        display:flex!important;
+    }
+    .registration-features {
+        list-style: lower-greek;
+    }
+    .asterisk_data {
+        font-size: 12px;
+    }
+    #messages > span {
+        color: var(--danger);
+    }
+    :root {
+        --input-padding-x: 0.75rem;
+        --input-padding-y: 0.75rem;
+    }
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: Arial !important;
+    }
+    * {
+        font-family: Arial, sans-serif;
+    }
+    footer{
+        margin-top:auto;
+    }
+    body{
+        display:flex;
+        flex-direction: column;
+    }
+    .form-label-group {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .form-label-group > input,
+    .form-label-group > label {
+        padding: var(--input-padding-y) var(--input-padding-x);
+    }
+    .custom-input {
+        height: auto;
+        cursor: pointer;
+
+        max-width:300px;
+    }
+    .form-label-group > label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        margin-bottom: 0; /* Override default `<label>` margin */
+        line-height: 1.5;
+        color: rgba(0,0,0,.6);
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        transition: all 0.1s ease-in-out;
+        cursor: pointer;
+    }
+    .form-label-group input::-webkit-input-placeholder {
+        color: transparent;
+    }
+    .form-label-group input:-ms-input-placeholder {
+        color: transparent;
+    }
+    .form-label-group input::-ms-input-placeholder {
+        color: transparent;
+    }
+    .form-label-group input::-moz-placeholder {
+        color: transparent;
+    }
+    .form-label-group input::placeholder {
+        color: transparent;
+    }
+    .form-label-group input:not(:placeholder-shown) {
+        padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+        padding-bottom: calc(var(--input-padding-y) / 3);
+    }
+    .form-label-group input:not(:placeholder-shown) ~ label {
+        padding-top: calc(var(--input-padding-y) / 3);
+        padding-bottom: calc(var(--input-padding-y) / 3);
+        font-size: 12px;
+        color: #777;
+    }
+    input:focus{
+        border-color: #07f!important;
+        box-shadow:none!important;
+    }
+    .second-input:focus{
+        position:relative;
+        border-top-color:#07f!important;
+        border-bottom-color:#07f!important;
+
+    }
+    .register-container{
+        flex:1 auto;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .register-container .logo a{
+        color: #000;
+        font-family: avenir,sans-serif;
+        font-size: 22px;
+        font-weight: 500;
+        border-bottom: none;
+    }
+    .second-input{
+        border-bottom-color: transparent!important;
+        border-top-color:transparent!important;
+        border-radius: 0!important;
+    }
+    .user-btn{
+        width:100%
+
+    }
+
+    header,footer{
+        display: none!important;
+    }
+    .forget-link{
+        color:#007bff!important;
+        cursor:pointer;
+    }
+    .forget-link:hover{
+        color: #0056b3!important;
+        text-decoration: underline!important;
+    }
+</style>
+<div class="register-container">
+<div class="entry-container d-flex flex-column justify-content-around" style="max-width:324px">
+
+    <div class="logo" style="align-self:center;"><a href="/">Statsnet</a></div>
+    <div class="entry-header" style="align-self: center; text-align: center" id="entry_header">
+        {{.localization.hello_message}}
+    </div>
+
+
+
+    <form class="my-4 d-flex flex-column justify-content-around auth_form" id="auth" >
+        <div class="d-flex flex-column form-label-group" >
+            <input type="email" class="custom-input form-control" style="border-bottom-right-radius: 0;border-bottom-left-radius: 0;" placeholder="Почта" name="email" id="email_input" required="">
+            <label for="email_input">Почта</label>
+        </div>
+        <div class="d-flex flex-column form-label-group">
+            <input class="custom-input form-control" style="border-top-right-radius: 0;border-top-left-radius: 0; border-top-color:transparent" placeholder="Пароль" type="password" name="password" id="password_input" required="">
+            <label for="password_input">Пароль</label>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="user-btn btn-primary" onclick="auth(event);">
+                Войти
+            </button>
+        </div>
+        <div class="mt-2 d-flex flex-column" id="messages">
+        </div>
+    </form>
+    <form id="forge-password" class="mb-4 d-flex flex-column justify-content-around auth_form hidden">
+        <div class="d-flex flex-column form-label-group" >
+            <input type="email" class="custom-input form-control" placeholder="Почта" name="email" id="email" required="">
+            <label for="email">Почта</label>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="user-btn btn-primary" onclick="forgetPassword(event)">
+                {{ $.localization.forget_password }}
+            </button>
+        </div>
+        <div class="mt-2 d-flex flex-column" id="messages_forgot">
+        </div>
+
+    </form>
+    <div class="entry-description d-flex flex-column justify-content-around" id="additional-links">
+        <p style="color: rgba(0,0,0,.6); margin:0!important">Еще не зарегистрированы? <a href="/register">Зарегистрироваться</a></p>
+        <a class="forget-link" onclick="changeToForgetPassword(event,false)">Забыли пароль?</a>
+    </div>
+
+    <div class="mt-2 asterisk_data d-none">
+        <p id="subscription">
+            **Зарегистрированные пользователи имеют доступ к покупке подписки
+        </p>
+    </div>
+</div>
+</div>
+<script>
+    const email_input = document.getElementById("email_input");
+    const email_for_forget = document.getElementById('email')
+    const password_input = document.getElementById("password_input");
+    const messages_node = document.getElementById("messages");
+    const messages_forgot = document.getElementById('messages_forgot');
+    const set_message = async (messages, node) => {
+      node.innerHTML = "";
+      messages.forEach(message => {
+          const element = document.createElement('span');
+          element.classList.add('text-danger');
+          element.innerText = window.localization[message];
+          node.appendChild(element);
+        }
+      );
+    };
+    const auth = async (e) => {
+        e.preventDefault();
+        await set_message([],messages_node);
+        let validators = [];
+        const email = email_input.value;
+        const password = password_input.value;
+        const email_valid = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!email_valid.test(email))
+        {
+            validators.push("email_invalid");
+        }
+        if (password.length < 8) {
+            validators.push("password_length_less_than_8");
+        }
+        if (validators.length) {
+            await set_message(validators,messages_node);
+            return false;
+        }
+        fetch("/api/login", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            })
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                try {
+                    set_message(Object.entries(data.messages).map(element => element[1]),messages_node)
+                } catch (e) {}
+                if (data.success) {
+                    window.location.reload()
+                }}
+            )
+    };
+    const forgetPassword = async (e)=>{
+      e.preventDefault();
+      const email = email_for_forget.value;
+      let validators = [];
+      console.log(email)
+      const email_valid = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!email_valid.test(email)) {
+        validators.push("email_invalid");
+      }
+
+        e.target.innerHTML=`<div class='spinner-border loader'></div>`;
+        e.target.disabled = true;
+      fetch('/api/user/forget_password', {
+        method:'POST',
+        mode:'cors',
+        headers:{
+          'Content-Type':"application/json",
+        },
+        body:JSON.stringify({
+          email,
+        })
+
+      }).then(resp=>resp.json()).then(resp=>{
+        if(resp.data){
+          // window.location.reload()
+          set_message(['wait_until_5_min'],messages_forgot);
+          setTimeout(()=>{window.location.reload()}, 1500);
+        }else if(resp.error){
+            set_message([resp.error],messages_forgot);
+            e.target.innerHTML=`${window.localization.forget_password}`;
+            e.target.disabled = false;
+        }
+      })
+
+
+
+    }
+    const changeToForgetPassword = (e,toLogin)=>{
+      const loginForm = document.getElementById('auth'),
+        forgetForm = document.getElementById('forge-password'),
+        additionalLinks = document.getElementById('additional-links'),
+        header = document.getElementById('entry_header');
+      console.log(loginForm,additionalLinks,forgetForm)
+      if(toLogin){
+        forgetForm.classList.add('hidden');
+        forgetForm.classList.remove('visible');
+
+        loginForm.classList.add('hidden');
+        loginForm.classList.remove('visible');
+
+        additionalLinks.classList.add('hidden');
+        additionalLinks.classList.remove('visible');
+        header.textContent = window.localization.hello_message;
+      }else{
+        header.textContent = window.localization.page_forget_password;
+        forgetForm.classList.remove('hidden');
+        forgetForm.classList.add('visible');
+
+        loginForm.classList.remove('visible');
+        loginForm.classList.add('hidden');
+
+        additionalLinks.classList.remove('visible');
+        additionalLinks.classList.add('hidden');
+      }
+    }
+</script>

@@ -1,0 +1,38 @@
+.home-page {
+  padding: 40px 0 30px;
+  background-size: cover;
+  background-position: center top;
+  color: #000;
+
+  h1 {
+    font-family: 'Gotham Pro', sans-serif;
+    margin-bottom: 30px;
+    font-size: 36px;
+    letter-spacing: -1px;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+      font-size: 30px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 27px;
+    }
+  }
+
+  .advantages--item {
+    img {
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}
